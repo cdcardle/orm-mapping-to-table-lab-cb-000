@@ -31,5 +31,7 @@ class Student
       VALUES (?, ?)
       SQL
     DB[:conn].execute(sql, self.name, self.grade)
+
+    self.id = DB[:conn].execute("SELECT id FROM students ORDER BY id DESC LIMIT 1;")[0][0]
   end
 end
