@@ -15,6 +15,7 @@ class Student
         grade TEXT
       )
       SQL
+
     DB[:conn].execute(sql)
   end
 
@@ -22,6 +23,7 @@ class Student
     sql = <<-SQL
       DROP TABLE students
       SQL
+
     DB[:conn].execute(sql)
   end
 
@@ -30,8 +32,13 @@ class Student
       INSERT INTO students (name, grade)
       VALUES (?, ?)
       SQL
+
     DB[:conn].execute(sql, self.name, self.grade)
 
     @id = DB[:conn].execute("SELECT id FROM students ORDER BY id DESC LIMIT 1;")[0][0]
+  end
+
+  def method_name
+
   end
 end
